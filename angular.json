@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "LearnNgApp"
+    }
+  },
+  "defaultProject": "LearnNgApp",
+  "cli": {
+    "analytics": false
+  }
 }

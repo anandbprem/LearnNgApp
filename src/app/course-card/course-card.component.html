@@ -1,14 +1,28 @@
-<h1>List of Courses </h1>
 <!-- <h1>Title : {{coreCourse.description}} </h1>
 <h1>Title display: {{title}} </h1> -->
 
-<div class="courses">
+
+<!--
+
+-->
+<div class="courses" *ngIf="course">
     <div class="course-card">
         <div class="course-title">
-            {{ course.description }}
+            {{ cardIndex + ': ' + course.description }}
         </div>
-        <img alt="{{course.description}}"
+        <!-- *ngIf="course.iconUrl" : Can also be used, 
+            when the object is null, undefined, false the html will be hidden -->
+        <!-- 
+            ##### using the inline HTML for displaying the image. ##### 
+        -->
+            <img alt="{{course.description}}"
+            *ngIf="isImageVisible() else noImage"
              [src]="course.iconUrl">
+        
+
+        <ng-template #noImage>
+            <p><b><i>No Image available</i></b></p>
+        </ng-template>
 
         <div class="course-description">
           {{course.longDescription}}

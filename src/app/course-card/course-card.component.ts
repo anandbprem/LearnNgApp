@@ -19,9 +19,15 @@ export class CourseCardComponent implements OnInit {
   courseSelected = new EventEmitter<Course>();
   constructor() { }
 
+  @Input()
+  cardIndex: number;
+
   ngOnInit(): void {
   }
 
+  isImageVisible(){
+    return this.course && this.course.iconUrl;
+  }
   onCourseViewed(param){
     console.log('Course Card');
     console.log(JSON.stringify(param));

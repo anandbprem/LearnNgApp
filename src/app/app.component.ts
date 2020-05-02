@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'LearnNgApp';
 
-  coreCourse: Course = COURSES[1];
+  courses = COURSES;
 
   onCourseSelected(course: Course){
     console.log("App Component");

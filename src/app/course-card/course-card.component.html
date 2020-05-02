@@ -1,0 +1,18 @@
+<h1>List of Courses </h1>
+<!-- <h1>Title : {{coreCourse.description}} </h1>
+<h1>Title display: {{title}} </h1> -->
+
+<div class="courses">
+    <div class="course-card">
+        <div class="course-title">
+            {{ course.description }}
+        </div>
+        <img alt="{{course.description}}"
+             [src]="course.iconUrl">
+
+        <div class="course-description">
+          {{course.longDescription}}
+        </div>
+        <button (click)="onCourseViewed(this.course)">View Course</button>
+    </div>
+</div>

@@ -28,9 +28,30 @@ export class CourseCardComponent implements OnInit {
   isImageVisible(){
     return this.course && this.course.iconUrl;
   }
+
   onCourseViewed(param){
     console.log('Course Card');
     console.log(JSON.stringify(param));
     this.courseSelected.emit(this.course);
+  }
+
+  ///
+  /// ngClass is used when we need to apply styles for HTML template
+  /// DEPENDING on the content of the data.
+  ///
+  
+  cardClasses(){
+    // return {
+    //   'beginner' : false,
+    //   'course-card': true
+    // };
+
+    // return {
+    //   beginner : this.course.category === 'BEGINNER'
+    // };
+
+    if(this.course.category === 'BEGINNER'){
+      return ['beginner'];
+    }
   }
 }

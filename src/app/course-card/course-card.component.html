@@ -3,12 +3,19 @@
 
 
 <!--
+    
+    [style.text-decoration]="'underline'" : assigning the styles for single property
+    
+    [ngStyle]="{'text-decoration': underline}"
+
 
 -->
 <div class="courses" *ngIf="course">
     <div class="course-card" 
         [ngClass]="cardClasses()">
-        <div class="course-title">
+        <div class="course-title" 
+            [ngStyle]="cardStyles()"
+        >
             {{ cardIndex + ': ' + course.description }}
         </div>
         <!-- *ngIf="course.iconUrl" : Can also be used, 

@@ -10,31 +10,61 @@
 
 
 -->
-<div class="courses" *ngIf="course">
-    <div class="course-card" 
-        [ngClass]="cardClasses()">
-        <div class="course-title" 
-            [ngStyle]="cardStyles()"
-        >
-            {{ cardIndex + ': ' + course.description }}
-        </div>
-        <!-- *ngIf="course.iconUrl" : Can also be used, 
-            when the object is null, undefined, false the html will be hidden -->
-        <!-- 
-            ##### using the inline HTML for displaying the image. ##### 
-        -->
-            <img alt="{{course.description}}"
-            *ngIf="isImageVisible() else noImage"
-             [src]="course.iconUrl">
-        
 
-        <ng-template #noImage>
-            <p><b><i>No Image available</i></b></p>
-        </ng-template>
+<ng-container *ngIf="course">
+    <!-- 
+        ng-container is mainly used
+            when we are adding the DOM specially for the core directives. 
+            when we don't have any DOM to apply the condition.
 
-        <div class="course-description">
-          {{course.longDescription}}
+            This will not create an extra DOM object and page will become light weight
+    -->
+    <div class="courses" >
+        <div class="course-card" 
+            [ngClass]="cardClasses()">
+            <div class="course-title" 
+                [ngStyle]="cardStyles()"
+            >
+                {{ cardIndex + ': ' + course.description }}
+            </div>
+            <!-- *ngIf="course.iconUrl" : Can also be used, 
+                when the object is null, undefined, false the html will be hidden -->
+            <!-- 
+                ##### using the inline HTML for displaying the image. ##### 
+            -->
+                <img alt="{{course.description}}"
+                *ngIf="isImageVisible() else noImage"
+                 [src]="course.iconUrl">
+            
+    
+            <ng-template #noImage>
+                <p><b><i>No Image available</i></b></p>
+            </ng-template>
+    
+            <div class="course-description">
+              {{course.longDescription}}
+            </div>
+            <ng-container [ngSwitch]="course.category">
+                <div class="course-category" >
+                    <ng-container *ngSwitchCase="'BEGINNER'">
+                        <div class="category" >Beginner</div>
+                    </ng-container>
+                    <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
+                    <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
+                    <div class="category" *ngSwitchDefault>All Levels</div>
+                </div>
+            </ng-container>
+            <!-- 
+                Using the ngSwitch : Core Directive only
+             -->
+            <div class="course-category" [ngSwitch]="course.category">
+                <div class="category" *ngSwitchCase="'BEGINNER'">Beginner</div>
+                <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
+                <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
+                <div class="category" *ngSwitchDefault>All Levels</div>
+            </div>
+            <button (click)="onCourseViewed(this.course)">View Course</button>
         </div>
-        <button (click)="onCourseViewed(this.course)">View Course</button>
     </div>
-</div>
+</ng-container>
+
